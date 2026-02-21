@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Historia() {
   const hitos = [
     {
-      id: "01",
+      id: "1",
       year: "2022",
       title: "El Nacimiento",
       desc: "Forjado por un grupo de visionarios en el corazón de la ciudad. El Club Deportivo León nació con una premisa inquebrantable: ser el orgullo de nuestra gente y competir al más alto nivel desde el día uno.",
@@ -11,7 +11,7 @@ export default function Historia() {
       reverse: false
     },
     {
-      id: "02",
+      id: "2",
       year: "2024",
       title: "Primeros Rugidos",
       desc: "La consolidación institucional. Se inauguraron las obras principales del predio juvenil y el primer equipo logró el histórico ascenso, cimentando una identidad de juego agresiva y vistosa.",
@@ -19,7 +19,7 @@ export default function Historia() {
       reverse: true
     },
     {
-      id: "03",
+      id: "3",
       year: "2026",
       title: "La Nueva Era",
       desc: "Con la modernización del estadio y una plantilla de élite, el club entra en su etapa más ambiciosa. No solo buscamos participar, buscamos dominar el continente y escribir la página más dorada de nuestra historia.",
@@ -52,17 +52,22 @@ export default function Historia() {
       {/* Timeline Section */}
       <section className="container mx-auto px-4 lg:px-8 py-24 relative z-20 overflow-x-clip">
         
-        {/* Línea central (Solo visible en Desktop) */}
-        <div className="hidden md:block absolute left-1/2 top-24 bottom-24 w-[2px] bg-gradient-to-b from-transparent via-white/10 to-transparent -translate-x-1/2 z-0"></div>
+        {/* Línea central (En mobile se pega a la izquierda, en desktop va al centro) */}
+        <div className="absolute left-8 md:left-1/2 top-24 bottom-24 w-[2px] bg-gradient-to-b from-transparent via-white/10 to-transparent -translate-x-1/2 z-0"></div>
 
-        <div className="space-y-24 md:space-y-40 relative z-10">
+        <div className="space-y-32 md:space-y-40 relative z-10">
           {hitos.map((hito, index) => (
-            <div key={index} className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 group ${hito.reverse ? 'md:flex-row-reverse' : ''}`}>
+            <div key={index} className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 group ${hito.reverse ? 'md:flex-row-reverse' : ''} pl-12 md:pl-0`}>
               
+              {/* Punto de la línea de tiempo (Nodo) - top-36 lo centra perfecto en la foto en mobile */}
+              <div className="absolute left-8 md:left-1/2 top-36 md:top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-20">
+                <div className="w-4 h-4 rounded-full bg-club-dark border-2 border-club-gold group-hover:bg-club-gold group-hover:shadow-[0_0_15px_rgba(175,154,109,0.8)] transition-all duration-500"></div>
+              </div>
+
               {/* Bloque de Imagen */}
               <div className="w-full md:w-1/2 relative">
-                {/* Número Gigante de Fondo (Watermark) */}
-                <span className={`absolute top-1/2 -translate-y-1/2 ${hito.reverse ? '-left-12 md:-left-24' : '-right-12 md:-right-24'} font-title text-[8rem] md:text-[12rem] font-bold text-club-gold opacity-5 select-none transition-transform duration-700 group-hover:scale-110 group-hover:opacity-10 z-0`}>
+                {/* Número Gigante de Fondo (Watermark adaptado para mobile) */}
+                <span className={`absolute top-1/2 -translate-y-1/2 ${hito.reverse ? '-left-6 md:-left-24' : '-right-6 md:-right-24'} font-title text-[6rem] md:text-[12rem] font-bold text-club-gold opacity-5 select-none transition-transform duration-700 group-hover:scale-110 group-hover:opacity-10 z-0`}>
                   {hito.id}
                 </span>
 
@@ -72,19 +77,14 @@ export default function Historia() {
                 </div>
               </div>
 
-              {/* Punto de la línea de tiempo (Nodo) */}
-              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 items-center justify-center z-20">
-                <div className="w-4 h-4 rounded-full bg-club-dark border-2 border-club-gold group-hover:bg-club-gold group-hover:shadow-[0_0_15px_rgba(175,154,109,0.8)] transition-all duration-500"></div>
-              </div>
-
               {/* Bloque de Texto (Glass Card) */}
               <div className="w-full md:w-1/2 flex justify-center">
-                <div className={`bg-club-gray/40 backdrop-blur-xl border border-white/5 rounded-2xl p-8 md:p-10 w-full max-w-lg shadow-2xl relative overflow-hidden group-hover:border-club-gold/30 transition-colors duration-500 ${hito.reverse ? 'md:text-right' : 'md:text-left'}`}>
+                <div className={`bg-club-gray/40 backdrop-blur-xl border border-white/5 rounded-2xl p-6 md:p-10 w-full max-w-lg shadow-2xl relative overflow-hidden group-hover:border-club-gold/30 transition-colors duration-500 ${hito.reverse ? 'md:text-right' : 'md:text-left'}`}>
                   
                   {/* Detalle decorativo de la tarjeta */}
                   <div className={`absolute top-0 ${hito.reverse ? 'right-0' : 'left-0'} w-2 h-full bg-gradient-to-b from-club-gold to-transparent opacity-50`}></div>
 
-                  <span className="inline-block border border-club-gold text-club-gold text-xs font-bold px-3 py-1 rounded-sm uppercase tracking-widest mb-4">
+                  <span className="inline-block border border-club-gold text-club-gold text-[10px] md:text-xs font-bold px-3 py-1 rounded-sm uppercase tracking-widest mb-4">
                     Año {hito.year}
                   </span>
                   <h3 className="font-title text-3xl md:text-4xl text-white mb-4">
