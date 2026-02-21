@@ -15,7 +15,7 @@ export default function Navbar() {
     return () => { document.body.style.overflow = 'unset'; }
   }, [isOpen]);
 
-  // Agregamos "Tienda" al array de enlaces
+  // Array de enlaces de navegación principales
   const navLinks = [
     { name: 'Noticias', path: '/' },
     { name: 'El Club', path: '/elclub' },
@@ -29,7 +29,7 @@ export default function Navbar() {
       <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isOpen ? 'bg-club-dark/95' : 'bg-club-dark/60 backdrop-blur-xl border-b border-white/5'}`}>
         <div className="container mx-auto px-4 lg:px-8 h-20 md:h-24 flex items-center justify-between">
           
-          {/* Logo */}
+          {/* Logo principal y nombre del club */}
           <Link href="/" className="flex items-center gap-4 group" onClick={() => setIsOpen(false)}>
             <div className="relative">
               <div className="absolute inset-0 bg-club-red/50 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -41,7 +41,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Navegación Desktop */}
+          {/* Navegación principal para escritorio */}
           <nav className="hidden lg:flex items-center gap-8 xl:gap-10 font-medium text-sm">
             {navLinks.map((item, index) => (
               <Link key={index} href={item.path} className="relative group text-gray-300 hover:text-white transition-colors duration-300 uppercase tracking-wider text-xs font-bold">
@@ -51,10 +51,10 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Acciones, Redes y Menú Hamburguesa */}
+          {/* Acciones, redes sociales y menú hamburguesa (mobile) */}
           <div className="flex items-center gap-5 md:gap-8">
             
-            {/* Redes Desktop */}
+            {/* Redes sociales visibles solo en escritorio */}
             <div className="hidden lg:flex items-center gap-4 text-lg text-gray-400">
               <a href="#" className="hover:text-club-gold hover:-translate-y-1 transition-all"><i className="bi bi-instagram"></i></a>
               <a href="#" className="hover:text-club-gold hover:-translate-y-1 transition-all"><i className="bi bi-twitter"></i></a>
@@ -66,7 +66,7 @@ export default function Navbar() {
               <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] skew-x-12"></div>
             </Link>
 
-            {/* Botón Hamburguesa Animado (Solo Mobile) */}
+            {/* Botón hamburguesa animado, visible solo en mobile */}
             <button 
               className="lg:hidden relative w-10 h-10 flex items-center justify-center text-white focus:outline-none z-50"
               onClick={() => setIsOpen(!isOpen)}
@@ -82,18 +82,18 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Overlay del Menú Mobile */}
+      {/* Overlay del menú mobile, aparece al abrir el menú hamburguesa */}
       <div className={`fixed inset-0 z-40 bg-club-dark/95 backdrop-blur-2xl transition-all duration-500 ease-in-out lg:hidden flex flex-col pt-24 pb-12 overflow-y-auto ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
         
-        {/* Marca de agua de fondo */}
+        {/* Marca de agua de fondo, decorativa */}
         <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
           <i className="bi bi-shield-fill text-[20rem] text-club-red/5"></i>
         </div>
 
-        {/* Contenedor Flex para separar enlaces arriba y redes abajo */}
+        {/* Contenedor flex: enlaces arriba, redes sociales abajo */}
         <div className="flex flex-col justify-between min-h-full relative z-10 w-full px-8">
             
-            {/* Enlaces y Botones */}
+            {/* Enlaces y botones principales en menú mobile */}
             <nav className="flex flex-col items-center gap-6 w-full mt-4">
             {navLinks.map((item, index) => (
                 <Link 
@@ -124,7 +124,7 @@ export default function Navbar() {
             </Link>
             </nav>
 
-            {/* Redes en el pie del menú */}
+            {/* Redes sociales en el pie del menú mobile */}
             <div className="flex justify-center gap-10 text-3xl text-gray-500 mt-12 pt-8 border-t border-white/5 w-full max-w-xs mx-auto">
             <a href="#" className="hover:text-club-gold transition-colors"><i className="bi bi-instagram"></i></a>
             <a href="#" className="hover:text-club-gold transition-colors"><i className="bi bi-twitter"></i></a>
